@@ -15,9 +15,6 @@ class NextOfKin extends BaseModel
         'contact_number_two',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);

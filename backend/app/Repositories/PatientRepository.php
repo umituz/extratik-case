@@ -19,9 +19,6 @@ class PatientRepository extends BaseRepository implements PatientRepositoryInter
         $this->patient = $patient;
     }
 
-    /**
-     * @return LengthAwarePaginator
-     */
     public function getAllData(): LengthAwarePaginator
     {
         return $this->patient->with(['next_of_kin', 'conditions', 'allergies', 'medications'])->paginate(5);

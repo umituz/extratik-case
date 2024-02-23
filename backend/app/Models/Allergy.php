@@ -12,9 +12,6 @@ class Allergy extends BaseModel
         'notes',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
