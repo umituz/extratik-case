@@ -26,7 +26,7 @@ class PatientFactory extends Factory
             'address' => $this->faker->address,
             'post_code' => $this->faker->postcode,
             'contact_number_one' => $this->faker->phoneNumber,
-            'contact_number_two' => $this->faker->phoneNumber
+            'contact_number_two' => $this->faker->phoneNumber,
         ];
     }
 }

@@ -30,7 +30,7 @@ class PatientResource extends JsonResource
                 'Conditions' => ConditionResource::collection($this->conditions),
                 'Allergies' => AllergyResource::collection($this->allergies),
                 'Medications' => MedicationResource::collection($this->medications),
-            ]
+            ],
         ];
     }
 }

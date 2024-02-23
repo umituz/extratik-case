@@ -14,9 +14,6 @@ class PatientService
         $this->patientRepository = $patientRepository;
     }
 
-    /**
-     * @return PatientCollection
-     */
     public function getPatientListResource(): PatientCollection
     {
         $items = $this->patientRepository->getAllData();

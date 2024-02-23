@@ -16,7 +16,7 @@ class Patient extends BaseModel
         'address',
         'post_code',
         'contact_number_one',
-        'contact_number_two'
+        'contact_number_two',
     ];
 
     protected static function boot()
@@ -26,33 +26,21 @@ class Patient extends BaseModel
         static::addGlobalScope(new SortingScope);
     }
 
-    /**
-     * @return HasMany
-     */
     public function next_of_kin(): HasMany
     {
         return $this->hasMany(NextOfKin::class);
     }
 
-    /**
-     * @return HasMany
-     */
     public function conditions(): HasMany
     {
         return $this->hasMany(Condition::class);
     }
 
-    /**
-     * @return HasMany
-     */
     public function allergies(): HasMany
     {
         return $this->hasMany(Allergy::class);
     }
 
-    /**
-     * @return HasMany
-     */
     public function medications(): HasMany
     {
         return $this->hasMany(Medication::class);

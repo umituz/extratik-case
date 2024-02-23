@@ -14,9 +14,6 @@ class Medication extends BaseModel
         'end_date',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
