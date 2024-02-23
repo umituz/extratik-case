@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PatientSeeder::class,
+            NextOfKinSeeder::class,
+            ConditionSeeder::class,
+            AllergySeeder::class,
+            MedicationSeeder::class,
         ]);
     }
 }

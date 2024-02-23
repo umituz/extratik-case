@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Patient;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class PatientRepository
@@ -16,5 +17,13 @@ class PatientRepository extends BaseRepository implements PatientRepositoryInter
         parent::__construct($patient);
 
         $this->patient = $patient;
+    }
+
+    /**
+     * @return LengthAwarePaginator
+     */
+    public function getAllData(): LengthAwarePaginator
+    {
+        return $this->patient->with(['next_of_kin', 'conditions', 'allergies', 'medications'])->paginate(5);
     }
 }

@@ -15,16 +15,22 @@ class PatientResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'id_card' => $this->id_card,
-            'gender' => $this->gender,
-            'name' => $this->name,
-            'surname' => $this->surname,
-            'date_of_birth' => $this->date_of_birth,
-            'address' => $this->address,
-            'post_code' => $this->post_code,
-            'contact_number_one' => $this->contact_number_one,
-            'contact_number_two' => $this->contact_number_two,
+            'Id' => $this->id,
+            'IdCard' => $this->id_card,
+            'Gender' => $this->gender,
+            'Name' => $this->name,
+            'Surname' => $this->surname,
+            'DateOfBirth' => $this->date_of_birth,
+            'Address' => $this->address,
+            'Postcode' => $this->post_code,
+            'ContactNumber1' => $this->contact_number_one,
+            'ContactNumber2' => $this->contact_number_two,
+            'NextOfKin' => NextOfKinResource::collection($this->next_of_kin),
+            'Medical' => [
+                'Conditions' => ConditionResource::collection($this->conditions),
+                'Allergies' => AllergyResource::collection($this->allergies),
+                'Medications' => MedicationResource::collection($this->medications),
+            ]
         ];
     }
 }

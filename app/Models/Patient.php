@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\SortingScope;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Patient extends BaseModel
 {
@@ -23,5 +24,37 @@ class Patient extends BaseModel
         parent::boot();
 
         static::addGlobalScope(new SortingScope);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function next_of_kin(): HasMany
+    {
+        return $this->hasMany(NextOfKin::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function conditions(): HasMany
+    {
+        return $this->hasMany(Condition::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function allergies(): HasMany
+    {
+        return $this->hasMany(Allergy::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function medications(): HasMany
+    {
+        return $this->hasMany(Medication::class);
     }
 }

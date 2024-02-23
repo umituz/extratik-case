@@ -19,7 +19,7 @@ class PatientService
      */
     public function getPatientListResource(): PatientCollection
     {
-        $items = $this->patientRepository->paginate();
+        $items = $this->patientRepository->getAllData();
 
         return new PatientCollection($items);
     }
