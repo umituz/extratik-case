@@ -21,4 +21,15 @@ class PatientsController extends BaseController
             data: $items
         );
     }
+
+    public function show($slug)
+    {
+        $item = $this->patientService->findBy('id_card', $slug);
+
+        if (! $item) {
+            return $this->notFound();
+        }
+
+        return $this->ok($item, __('Patient Detail'));
+    }
 }

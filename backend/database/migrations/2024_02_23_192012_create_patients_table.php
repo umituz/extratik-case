@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('contact_number_two')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->index('id_card');
         });
     }
 
