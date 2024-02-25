@@ -34,4 +34,19 @@ class PatientService
 
         return null;
     }
+
+    public function create($data)
+    {
+        return $this->patientRepository->create($data);
+    }
+
+    public function update($id, $data)
+    {
+        return $this->patientRepository->update($id, $data);
+    }
+
+    public function destroy($id)
+    {
+        return $this->patientRepository->delete('id', $id);
+    }
 }

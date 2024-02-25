@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class BaseRepository
@@ -55,11 +56,15 @@ class BaseRepository implements BaseRepositoryInterface
     public function create($data)
     {
         try {
-            //            DB::beginTransaction();
+            DB::beginTransaction();
 
-            return $this->model->firstOrCreate($data);
+            $item = $this->model->create($data);
+
+            DB::commit();
+
+            return $item;
         } catch (Exception $e) {
-            //            DB::rollBack();
+            DB::rollBack();
 
             return $e->getMessage();
         }
@@ -72,11 +77,16 @@ class BaseRepository implements BaseRepositoryInterface
     public function update($id, $data)
     {
         try {
-            //            DB::beginTransaction();
+            DB::beginTransaction();
 
-            return $this->model->where('id', $id)->update($data);
+            $patient = $this->model->where('id', $id)->first();
+            $patient->update($data);
+
+            DB::commit();
+
+            return $patient;
         } catch (Exception $e) {
-            //            DB::rollBack();
+            DB::rollBack();
 
             return $e->getMessage();
         }
@@ -88,8 +98,16 @@ class BaseRepository implements BaseRepositoryInterface
     public function delete($key, $value)
     {
         try {
-            return $this->model->where($key, $value)->delete();
+            DB::beginTransaction();
+
+            $this->model->where($key, $value)->delete();
+
+            DB::commit();
+
+            return true;
         } catch (Exception $e) {
+            DB::rollBack();
+
             return $e->getMessage();
         }
     }
