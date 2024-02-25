@@ -20,7 +20,7 @@ class PatientResource extends JsonResource
             'Gender' => $this->gender,
             'Name' => $this->name,
             'Surname' => $this->surname,
-            'DateOfBirth' => $this->date_of_birth,
+            'DateOfBirth' => $this->date_of_birth?->format('d-m-Y'),
             'Address' => $this->address,
             'Postcode' => $this->post_code,
             'ContactNumber1' => $this->contact_number_one,

@@ -2,8 +2,7 @@ import React from "react";
 import {Col, Row} from "react-bootstrap";
 import PaginationComponent from "@/components/PaginationComponent";
 import {usePatientContext} from "@/contexts/PatientContext";
-import PatientListMolecule from "@/atomic-design/molecules/PatientListMolecule";
-import SearchMolecule from "@/atomic-design/molecules/SearchMolecule";
+import PatientItemMolecule from "@/atomic-design/molecules/PatientItemMolecule";
 
 const PatientListOrganism = () => {
     const {
@@ -11,14 +10,19 @@ const PatientListOrganism = () => {
         currentPage,
         lastPage,
         handlePageChange,
-        handleSearch,
     } = usePatientContext();
 
     return (
         <Row>
-            <Col lg={8}>
+            <Col lg={12}>
                 <Row>
-                    <PatientListMolecule patients={patients} />
+                    {patients?.map((patient) => (
+                        <Col md={3} key={patient.Id}>
+                            <PatientItemMolecule patient={patient} hasLink={true}/>
+                        </Col>
+                    ))}
+                </Row>
+                <Row>
                     <Col md={12} className="text-center mt-3">
                         <PaginationComponent
                             currentPage={currentPage}
@@ -28,10 +32,6 @@ const PatientListOrganism = () => {
                         />
                     </Col>
                 </Row>
-            </Col>
-
-            <Col lg={4}>
-                <SearchMolecule handleSearch={handleSearch} />
             </Col>
         </Row>
     )

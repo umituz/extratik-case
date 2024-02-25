@@ -6,11 +6,6 @@ export default function Meta({title, description = ''}: HeadComponentInterface) 
         <Head>
             <title>{title}</title>
             <meta name="description" content={description}/>
-            <link
-                rel="icon"
-                type="image/x-icon"
-                href="https://hr.innoscripta.com/favicon.ico"
-            />
         </Head>
     );
 }

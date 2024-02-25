@@ -2,6 +2,7 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {GetMethodService} from '@/services/GetMethodService';
 import {setPatients} from "@/stores/actions/PatientActions";
+import Loading from "@/components/Loading";
 
 const PatientContext = createContext();
 
@@ -15,9 +16,11 @@ export const PatientProvider = ({children}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [lastPage, setLastPage] = useState(1);
     const [toastMessage, setToastMessage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
+            setIsLoading(true);
             try {
                 const response = await GetMethodService(`patients?page=${currentPage}`);
 
@@ -25,6 +28,8 @@ export const PatientProvider = ({children}) => {
                 setLastPage(response?.data.last_page);
             } catch (error) {
                 setToastMessage({message: 'Data Loading Issue', type: 'error'});
+            } finally {
+                setIsLoading(false);
             }
         }
 
@@ -35,18 +40,6 @@ export const PatientProvider = ({children}) => {
         setCurrentPage(newPage);
     };
 
-    const handleSearch = async (searchTerm) => {
-        try {
-            const response = await GetMethodService(
-                `patients?page=${currentPage}&searchTerm=${searchTerm}`
-            );
-            dispatch(setPatients(response?.data.data));
-            setLastPage(response?.data.last_page);
-        } catch (error) {
-            setToastMessage({message: 'Data Loading Issue', type: 'error'});
-        }
-    };
-
     return (
         <PatientContext.Provider
             value={{
@@ -55,10 +48,9 @@ export const PatientProvider = ({children}) => {
                 lastPage,
                 toastMessage,
                 handlePageChange,
-                handleSearch,
             }}
         >
-            {children}
+            {isLoading ? <Loading /> : children}
         </PatientContext.Provider>
     );
 };

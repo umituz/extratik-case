@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('name');
             $table->string('surname');
-            $table->timestamp('date_of_birth');
+            $table->date('date_of_birth');
             $table->string('address');
             $table->string('post_code')->nullable();
             $table->string('contact_number_one');

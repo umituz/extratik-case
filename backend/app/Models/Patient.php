@@ -19,6 +19,10 @@ class Patient extends BaseModel
         'contact_number_two',
     ];
 
+    protected $casts = [
+        'date_of_birth' => 'date:d-m-Y',
+    ];
+
     protected static function boot()
     {
         parent::boot();

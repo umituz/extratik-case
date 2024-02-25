@@ -2,7 +2,8 @@ import { Button, Card, Col } from "react-bootstrap";
 import Link from "next/link";
 import React from "react";
 import { PatientItemInterface } from "@/interfaces/PatientItemInterface";
-import { FaUserMd, FaUserFriends, FaInfoCircle } from 'react-icons/fa'; // Example for icons
+import { FaUserMd, FaUserFriends, FaInfoCircle } from 'react-icons/fa';
+import ButtonComponent from "@/atomic-design/atoms/ButtonComponent";
 
 const PatientItemMolecule = ({ patient, hasLink }: PatientItemInterface) => {
     if (patient) {
@@ -32,18 +33,25 @@ const PatientItemMolecule = ({ patient, hasLink }: PatientItemInterface) => {
                 <Card className="mb-4 patient-card">
                     <Card.Body>
                         <h2 className="card-title h4">{fullName}</h2>
+                        <p className="card-text"><FaInfoCircle /> ID Card: {patient.IdCard}</p>
                         <p className="card-text"><FaInfoCircle /> Gender: {patient.Gender}</p>
-                        <p className="card-text"><FaInfoCircle /> Date Of Birth: {patient.DateOfBirth}</p>
-                        <p className="card-text"><FaInfoCircle /> Address: {patient.Address}</p>
-                        <p className="card-text"><FaInfoCircle /> Post Code: {patient.Postcode}</p>
-                        <p className="card-text"><FaInfoCircle /> Contact Number 1: {patient.ContactNumber1}</p>
-                        <p className="card-text"><FaInfoCircle /> Contact Number 2: {patient.ContactNumber2}</p>
+                        {!hasLink && (
+                            <>
+                                <p className="card-text"><FaInfoCircle/> Date Of Birth: {patient.DateOfBirth}</p>
+                                <p className="card-text"><FaInfoCircle/> Address: {patient.Address}</p>
+                                <p className="card-text"><FaInfoCircle/> Post Code: {patient.Postcode}</p>
+                                <p className="card-text"><FaInfoCircle/> Contact Number 1: {patient.ContactNumber1}</p>
+                                <p className="card-text"><FaInfoCircle/> Contact Number 2: {patient.ContactNumber2}</p>
+                            </>
+                        )}
+
                         {!hasLink && patient.Medical && renderMedicalInfo(patient.Medical)}
                         {!hasLink && patient.NextOfKin && renderNextOfKin(patient.NextOfKin)}
                         {hasLink && (
-
                             <Link href={patientDetailsLink}>
-                                <Button variant="primary" className="details-button">See details →</Button>
+                                <ButtonComponent variant="primary" type="button">
+                                    See details →
+                                </ButtonComponent>
                             </Link>
                         )}
                     </Card.Body>
