@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\PatientRequest;
 use App\Services\Base\PatientService;
-use Illuminate\Http\Request;
 
 class PatientsController extends BaseController
 {
@@ -51,9 +50,8 @@ class PatientsController extends BaseController
 
     public function destroy($id)
     {
-        $item = $this->patientService->destroy($id, );
+        $this->patientService->destroy($id, );
 
         return $this->noContent(null, __('Patient Deleted Successfully'));
     }
-
 }

@@ -10,7 +10,7 @@
 			"name": "Patient",
 			"item": [
 				{
-					"name": "List",
+					"name": "Patients List",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -21,6 +21,174 @@
 							],
 							"path": [
 								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patient Details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|9zOUp16qDv3vmsA1mCUcIOU8Wy5pnI6i3M8nBNkxeb0b8080",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/patients/:idCard",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"patients",
+								":idCard"
+							],
+							"variable": [
+								{
+									"key": "idCard",
+									"value": "719926no"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|9zOUp16qDv3vmsA1mCUcIOU8Wy5pnI6i3M8nBNkxeb0b8080",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/patients/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"patients",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|uHNO0rrO2XEATzpLmLzXfK3LC7N8zsTaC8dWjxuxcf058f11",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_card\": \"1234567890\",\n    \"gender\": \"Male\",\n    \"name\": \"John\",\n    \"surname\": \"Doe\",\n    \"date_of_birth\": \"1990-01-01\",\n    \"address\": \"123 Main St\",\n    \"post_code\": \"12345\",\n    \"contact_number_one\": \"555-1234\",\n    \"contact_number_two\": \"555-5678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/patients",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|uHNO0rrO2XEATzpLmLzXfK3LC7N8zsTaC8dWjxuxcf058f11",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_card\": \"559422nm\",\n    \"gender\": \"Male\",\n    \"name\": \"John Ümit\",\n    \"surname\": \"Doe UZ\",\n    \"date_of_birth\": \"1999-01-01\",\n    \"address\": \"123 Main St. Nigeria\",\n    \"post_code\": \"123453213213\",\n    \"contact_number_one\": \"555-1234321321\",\n    \"contact_number_two\": \"555-56783213232\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/patients/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"patients",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
 							]
 						}
 					},

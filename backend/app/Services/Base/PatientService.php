@@ -37,12 +37,16 @@ class PatientService
 
     public function create($data)
     {
-        return $this->patientRepository->create($data);
+        $item = $this->patientRepository->create($data);
+
+        return new PatientResource($item);
     }
 
     public function update($id, $data)
     {
-        return $this->patientRepository->update($id, $data);
+        $item =  $this->patientRepository->update($id, $data);
+
+        return new PatientResource($item);
     }
 
     public function destroy($id)
