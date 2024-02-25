@@ -44,7 +44,7 @@ class PatientService
 
     public function update($id, $data)
     {
-        $item =  $this->patientRepository->update($id, $data);
+        $item = $this->patientRepository->update($id, $data);
 
         return new PatientResource($item);
     }

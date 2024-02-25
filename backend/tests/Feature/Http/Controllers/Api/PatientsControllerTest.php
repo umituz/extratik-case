@@ -8,13 +8,13 @@ use App\Models\Medication;
 use App\Models\NextOfKin;
 use App\Models\Patient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
 class PatientsControllerTest extends TestCase
 {
-    use RefreshDatabase, WithoutMiddleware, WithFaker;
+    use RefreshDatabase, WithFaker, WithoutMiddleware;
 
     public function setUp(): void
     {
@@ -92,7 +92,7 @@ class PatientsControllerTest extends TestCase
                         'Allergies' => [],
                         'Medications' => [],
                     ],
-                ]
+                ],
             ]);
     }
 
