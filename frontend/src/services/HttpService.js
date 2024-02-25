@@ -1,23 +1,17 @@
-import {getRequestOptions, postRequestOptions} from "./RequestOptions"
-
 export default class HttpService {
-    baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-
-    getData = async (url, token = null) => {
-        const requestOptions = getRequestOptions(token);
-
-        return fetch(this.baseUrl + '/' + url, requestOptions)
-            .then(
-                response => response.json()
-            )
+    constructor(baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL) {
+        this.baseUrl = baseUrl;
     }
 
-    postData = async (url, data, token = null) => {
-        const requestOptions = postRequestOptions(data, token);
+    getData = async (url) => {
+        try {
+            const response = await fetch(`${this.baseUrl}/${url}`);
 
-        return fetch(this.baseUrl + "/" + url, requestOptions)
-            .then(
-                response => response.json()
-            );
+            return await response.json();
+        } catch (error) {
+            console.error("Something Wrong: ", error);
+
+            throw error;
+        }
     }
 }

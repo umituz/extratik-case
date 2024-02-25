@@ -1,11 +1,13 @@
 import HttpService from "./HttpService";
 
-export const GetMethodService = (url, token = null) => {
+export const GetMethodService = async (url) => {
     const http = new HttpService();
 
-    return http.getData(url, token).then(data => {
-        return data;
-    }).catch((error) => {
-        return error;
-    });
+    try {
+        return await http.getData(url);
+    } catch (error) {
+        console.error("GetMethodService Error: ", error);
+
+        throw error;
+    }
 }
