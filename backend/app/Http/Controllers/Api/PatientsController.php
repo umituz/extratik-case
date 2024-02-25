@@ -50,7 +50,7 @@ class PatientsController extends BaseController
 
     public function destroy($id)
     {
-        $this->patientService->destroy($id, );
+        $this->patientService->destroy($id);
 
         return $this->noContent(null, __('Patient Deleted Successfully'));
     }
