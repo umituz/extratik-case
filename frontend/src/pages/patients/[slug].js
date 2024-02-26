@@ -1,34 +1,34 @@
-import React from 'react';
-import {GetMethodService} from '@/services/GetMethodService';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { GetMethodService } from '@/services/GetMethodService';
 import PatientDetailTemplate from "@/atomic-design/templates/PatientDetailTemplate";
+import Loading from "@/components/Loading";
 
-export default function PatientDetail({patient}) {
-    return (
-        <PatientDetailTemplate patient={patient}/>
-    )
-}
+export default function PatientDetail() {
+    const [patient, setPatient] = useState(null);
+    const router = useRouter();
+    const { slug } = router.query;
 
-export async function getServerSideProps(context) {
-    const {slug} = context.query;
-
-    try {
-        const response = await GetMethodService(`patients/${slug}`);
-        const patient = response.data;
-
-        if (!patient) {
-            throw new Error("Patient not found");
+    useEffect(() => {
+        async function fetchPatientData() {
+            if (slug) {
+                try {
+                    const response = await GetMethodService(`patients/${slug}`);
+                    setPatient(response.data);
+                } catch (error) {
+                    console.error("Error fetching patient data:", error);
+                }
+            }
         }
 
-        return {
-            props: {
-                patient
-            },
-        };
-    } catch (error) {
-        console.error(error);
+        fetchPatientData();
+    }, [slug]);
 
-        return {
-            notFound: true,
-        };
+    if (!patient) {
+        return <Loading />;
     }
+
+    return (
+        <PatientDetailTemplate patient={patient} />
+    );
 }

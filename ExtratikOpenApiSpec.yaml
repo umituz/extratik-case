@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Extratik
+  version: 1.0.0
+servers:
+  - url: http://{{apiurl}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Patient
+paths:
+  /patients:
+    get:
+      tags:
+        - Patient
+      summary: Patients List
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Patient
+      summary: Create New Patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id_card: '1234567890'
+                gender: Male
+                name: John
+                surname: Doe
+                date_of_birth: '1990-01-01'
+                address: 123 Main St
+                post_code: '12345'
+                contact_number_one: 555-1234
+                contact_number_two: 555-5678
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /patients/{idCard}:
+    get:
+      tags:
+        - Patient
+      summary: Patient Details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: idCard
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 204670zs
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /patients/{id}:
+    delete:
+      tags:
+        - Patient
+      summary: Destroy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Patient
+      summary: Update Patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id_card: 559422nm
+                gender: Male
+                name: John Ümit
+                surname: Doe UZ
+                date_of_birth: '1999-01-01'
+                address: 123 Main St. Nigeria
+                post_code: '123453213213'
+                contact_number_one: 555-1234321321
+                contact_number_two: 555-56783213232
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

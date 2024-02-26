@@ -23,9 +23,9 @@ class PatientsController extends BaseController
         );
     }
 
-    public function show($slug)
+    public function show($idCard)
     {
-        $item = $this->patientService->findBy('id_card', $slug);
+        $item = $this->patientService->findBy('id_card', $idCard);
 
         if (! $item) {
             return $this->notFound();

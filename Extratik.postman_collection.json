@@ -65,7 +65,7 @@
 							"variable": [
 								{
 									"key": "idCard",
-									"value": "719926no"
+									"value": "204670zs"
 								}
 							]
 						}
@@ -220,7 +220,7 @@
 	"variable": [
 		{
 			"key": "apiUrl",
-			"value": "http://localhost/api",
+			"value": "http://localhost:8000/api",
 			"type": "string"
 		}
 	]
